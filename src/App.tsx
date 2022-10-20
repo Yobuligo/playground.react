@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Dialog } from "./components/Dialog";
 
-function App() {
+const App = () => {
+  const [dialogActive, setDialogActive] = useState(false);
+
+  const toggle = () => {
+    setDialogActive((present) => {
+      if (present) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+  };
+
+  const onToggleClickHandler = () => {
+    toggle();
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {dialogActive && (
+        <Dialog
+          title="Button was clicked"
+          message="Button was clicked. Confirm message"
+          onOkay={onToggleClickHandler}
+        />
+      )}
+      <div>
+        <h1>Das ist ein Test</h1>
+        <button type="button" onClick={onToggleClickHandler}>
+          Open Dialog
+        </button>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
