@@ -1,9 +1,9 @@
-import IPerson from "../models/IPerson";
-import Person from "./Person";
+import { Person } from "../models/Person";
+import PersonCard from "./PersonCard";
 
-const PersonList: React.FC<{ persons?: IPerson[] }> = (props) => {
+const PersonList: React.FC<{ persons?: Person[] }> = (props) => {
   const items = props.persons?.map((person) => {
-    return <Person key={person.id} person={person} />;
+    return <PersonCard key={person.id} person={person} />;
   });
   return (
     <section>

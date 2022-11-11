@@ -1,7 +1,7 @@
-import IPerson from "../models/IPerson";
+import { Person } from "../models/Person";
 import styles from "./Person.module.css";
 
-const Person: React.FC<{ person: IPerson }> = (props) => {
+const PersonCard: React.FC<{ person: Person }> = (props) => {
   return (
     <div className={styles.person}>
       <div>{props.person.id}</div>
@@ -12,4 +12,4 @@ const Person: React.FC<{ person: IPerson }> = (props) => {
   );
 };
 
-export default Person;
+export default PersonCard;
