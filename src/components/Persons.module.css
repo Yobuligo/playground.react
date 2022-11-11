@@ -1,0 +1,10 @@
+.personList {
+}
+
+.personList button {
+  background-color: blueviolet;
+  color: white;
+  font-size: large;
+  padding: 0.5rem;
+  border-radius: 12px;
+}
