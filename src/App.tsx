@@ -1,41 +1,29 @@
-import { useEffect, useState } from "react";
-import { MovieList } from "./components/MovieList";
-import IMovie from "./models/Movie";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ErrorComponent from "./components/ErrorComponent";
+import MainHeader from "./components/MainHeader";
+import Contact from "./components/pages/Contact";
+import ProductDetails from "./components/pages/ProductDetails";
+import Products from "./components/pages/Products";
+import Welcome from "./components/pages/Welcome";
 
-const App = () => {
-  const [movies, setMovies] = useState<IMovie[]>([
-    {
-      id: 1,
-      episodeId: 1,
-      openingText: "Any Opening Text",
-      title: "My Title",
-    },
-  ]);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainHeader />,
+    errorElement: <ErrorComponent />,
+    children: [
+      { path: "/welcome", element: <Welcome /> },
+      { path: "/products", element: <Products /> },
+      { path: "/products/:productId", element: <ProductDetails /> },
+      { path: "/contact", element: <Contact /> },
+    ],
+  },
+]);
 
-  useEffect(() => {
-    fetch("https://swapi.dev/api/films/")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data: any) => {
-        const movies: IMovie[] = data.results.map((movieData: any) => {
-          return {
-            id: movieData.episode_id,
-            title: movieData.title,
-            episodeId: movieData.episode_id,
-            openingText: movieData.opening_crawl,
-          };
-        });
-        setMovies(movies);
-      });
-  }, []);
-
+const App: React.FC = () => {
   return (
     <>
-      <header>
-        <h2>Movie Overview</h2>
-      </header>
-      <MovieList movies={movies} />
+      <RouterProvider router={router} />
     </>
   );
 };
