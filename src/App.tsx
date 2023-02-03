@@ -1,29 +1,33 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorComponent from "./components/ErrorComponent";
-import MainHeader from "./components/MainHeader";
-import Contact from "./components/pages/Contact";
-import ProductDetails from "./components/pages/ProductDetails";
-import Products from "./components/pages/Products";
-import Welcome from "./components/pages/Welcome";
+import { useEffect, useState } from "react";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainHeader />,
-    errorElement: <ErrorComponent />,
-    children: [
-      { path: "/welcome", element: <Welcome /> },
-      { path: "/products", element: <Products /> },
-      { path: "/products/:productId", element: <ProductDetails /> },
-      { path: "/contact", element: <Contact /> },
-    ],
-  },
-]);
+const ResetComponent: React.FC<{ value: string }> = (props) => {
+  console.log(`ResetComponent was rebuild`);
+
+  useEffect(() => {
+    console.log(`UseEffect Callback was called`);
+    const timer = setTimeout(() => {
+      console.log(`Timer finished`);
+    }, 5000);
+  }, []);
+
+  return <>{props.value}</>;
+};
 
 const App: React.FC = () => {
+  const [value, setValue] = useState("");
+
+  console.log(`App was rebuild`);
+
   return (
     <>
-      <RouterProvider router={router} />
+      <ResetComponent value={value} />
+      <button
+        onClick={() => {
+          setValue(new Date().toString());
+        }}
+      >
+        Trigger Reset
+      </button>
     </>
   );
 };
