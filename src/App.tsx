@@ -1,21 +1,30 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorComponent from "./components/ErrorComponent";
-import MainHeader from "./components/MainHeader";
-import Contact from "./components/pages/Contact";
-import ProductDetails from "./components/pages/ProductDetails";
-import Products from "./components/pages/Products";
-import Welcome from "./components/pages/Welcome";
+import Header from "./components/Header";
+import { Person } from "./models/Person";
+import { ORM } from "./ORM";
+import PersonDetail from "./pages/PersonDetail";
+import Persons from "./pages/Persons";
+import Welcome from "./pages/Welcome";
+
+const orm = new ORM(
+  "https://fir-b80e3-default-rtdb.europe-west1.firebasedatabase.app"
+);
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainHeader />,
-    errorElement: <ErrorComponent />,
+    element: <Header />,
     children: [
-      { path: "/welcome", element: <Welcome /> },
-      { path: "/products", element: <Products /> },
-      { path: "/products/:productId", element: <ProductDetails /> },
-      { path: "/contact", element: <Contact /> },
+      { path: "welcome", element: <Welcome /> },
+      {
+        path: "persons",
+        element: <Persons />,
+        loader: async () => {
+          const persons = Person.findAll();
+          return persons;
+        },
+        children: [{ path: ":id", element: <PersonDetail /> }],
+      },
     ],
   },
 ]);
