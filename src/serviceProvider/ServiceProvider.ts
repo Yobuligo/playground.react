@@ -56,7 +56,7 @@ class ServiceProviderDefault implements IServiceProvider {
       serviceInstanceType: ServiceInstanceType.SINGLE_INSTANTIABLE,
       service: service,
     };
-    this.serviceDefinitions.push(serviceDefinition);
+    this.addServiceDefinition(serviceDefinition);
   }
 
   remove<T extends Service<any>>(abstractServiceType: new () => T): void {
@@ -81,7 +81,7 @@ class ServiceProviderDefault implements IServiceProvider {
       concreteServiceType: concreteServiceType,
       serviceInstanceType: serviceInstanceType,
     };
-    this.serviceDefinitions.push(serviceDefinition);
+    this.addServiceDefinition(serviceDefinition);
   }
 
   private findServiceDefinition<T extends Service<any>, K extends keyof T>(
@@ -90,6 +90,16 @@ class ServiceProviderDefault implements IServiceProvider {
     return this.serviceDefinitions.find((serviceDefinition) => {
       return serviceDefinition.abstractServiceType === abstractServiceType;
     });
+  }
+
+  private addServiceDefinition<T extends Service<any>, K extends keyof T>(
+    serviceDefinition: IServiceDefinition<T, K>
+  ): void {
+    if (this.contains(serviceDefinition.abstractServiceType)) {
+      this.remove(serviceDefinition.abstractServiceType);
+    }
+
+    this.serviceDefinitions.push(serviceDefinition);
   }
 
   private fetchSingleInstantiableService<
