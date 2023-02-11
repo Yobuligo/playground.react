@@ -6,6 +6,10 @@ import { ServiceInstanceType } from "./ServiceProviderTypes";
 class ServiceProviderDefault implements IServiceProvider {
   private serviceDefinitions: IServiceDefinition<any, any>[] = [];
 
+  contains<T extends Service<any>>(abstractServiceType: new () => T): boolean {
+    return this.findServiceDefinition(abstractServiceType) !== undefined;
+  }
+
   fetch<T extends Service<any>, K extends keyof T>(
     abstractServiceType: new () => T
   ): T[K] {
@@ -46,6 +50,7 @@ class ServiceProviderDefault implements IServiceProvider {
     abstractServiceType: new () => T,
     service: T[K]
   ): void {
+    this.findServiceDefinition(abstractServiceType);
     const serviceDefinition: IServiceDefinition<T, K> = {
       abstractServiceType: abstractServiceType,
       serviceInstanceType: ServiceInstanceType.SINGLE_INSTANTIABLE,
@@ -56,7 +61,7 @@ class ServiceProviderDefault implements IServiceProvider {
 
   remove<T extends Service<any>>(abstractServiceType: new () => T): void {
     const index = this.serviceDefinitions.findIndex((serviceDefinition) => {
-      return (serviceDefinition.abstractServiceType === abstractServiceType);
+      return serviceDefinition.abstractServiceType === abstractServiceType;
     });
 
     if (index === -1) {
@@ -83,7 +88,7 @@ class ServiceProviderDefault implements IServiceProvider {
     abstractServiceType: new () => T
   ): IServiceDefinition<T, K> | undefined {
     return this.serviceDefinitions.find((serviceDefinition) => {
-      return (serviceDefinition.abstractServiceType === abstractServiceType);
+      return serviceDefinition.abstractServiceType === abstractServiceType;
     });
   }
 

@@ -8,20 +8,17 @@ class Test {}
 
 const logger = new Logger();
 SP.put(LoggerService, logger);
-SP.register(
-  FactoryService,
-  Factory,
-  ServiceInstanceType.MULTI_INSTANTIABLE
-);
+SP.register(FactoryService, Factory, ServiceInstanceType.MULTI_INSTANTIABLE);
 
 const App: React.FC = () => {
+  SP.contains(FactoryService) ? console.log(`Contains LoggerService`) : console.log(`Contains not LoggerService`)
   const logger = SP.fetch(LoggerService);
   logger.log("First fetch");
-  SP.remove(FactoryService)
+  SP.remove(FactoryService);
   let factory = SP.fetchOrNull(FactoryService);
   factory?.create(Test);
   factory = SP.fetchOrNull(FactoryService);
-  factory?.create(Test);  
+  factory?.create(Test);
   return <AppContext.Provider value={AppContextDefault}></AppContext.Provider>;
 };
 
