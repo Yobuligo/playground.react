@@ -10,8 +10,8 @@ const Todo: React.FC<{ todo: ITodo }> = (props) => {
   };
 
   const selectStyle = props.todo.isActive
-    ? styles.deactivateButton
-    : styles.activateButton;
+    ? styles.activateButton
+    : styles.deactivateButton;
 
   return (
     <div className={styles.todo}>
@@ -19,7 +19,7 @@ const Todo: React.FC<{ todo: ITodo }> = (props) => {
         className={styles.title}
       >{`${props.todo.title} (${props.todo.id})`}</div>
       <div className={selectStyle} onClick={onButtonClick}>
-        {props.todo.isActive ? "Deactivate" : "Activate"}
+        {props.todo.isActive ? "Activate" : "Deactivate"}
       </div>
     </div>
   );
