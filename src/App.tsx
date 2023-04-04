@@ -1,53 +1,31 @@
 import { useState } from "react";
-import AddPersonButton from "./components/AddPersonButton";
-import ChangeStaceyButton from "./components/ChangeStaceyButton";
-import PersonList from "./components/PersonList";
-import { AppContext } from "./model/AppContext";
-import { IPerson } from "./model/IPerson";
-import PersonDetails from "./components/PersonDetails";
+import Row from "./components/Row";
+import { State } from "./model/State";
 
 const App: React.FC = () => {
-  console.log(`Render Application`);
-  const [persons, setPersons] = useState([
-    { firstname: "Stacey", lastname: "Starfish" },
-    { firstname: "Bertha", lastname: "Bear" },
-  ]);
+  const [field, setField] = useState<State[][]>([]);
 
-  const onAddPerson = (person: IPerson) => {
-    setPersons((previous) => [...previous, person]);
+  const rules = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 4],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  const [mode, setMode] = useState(false);
+  const onActivate = () => {
+    setMode((previous) => !previous);
   };
-
-  const onUpdatePerson = (person: IPerson) => {
-    setPersons((previousPersons) =>
-      previousPersons.map((cachedPerson) => {
-        if (cachedPerson.firstname === person.firstname) {
-          cachedPerson.lastname = person.lastname;
-          setSelectedPerson(cachedPerson);
-        }
-        return cachedPerson;
-      })
-    );
-  };
-
-  const [selectedPerson, setSelectedPerson] = useState<IPerson>({
-    firstname: "Stacey",
-    lastname: "Starfish",
-  });
-
   return (
-    <AppContext.Provider
-      value={{
-        persons: persons,
-        selectedPerson: selectedPerson,
-        onAddPerson: (person) => onAddPerson(person),
-        onUpdatePerson: (person) => onUpdatePerson(person),
-      }}
-    >
-      <AddPersonButton />
-      <ChangeStaceyButton />
-      <PersonDetails />
-      <PersonList />
-    </AppContext.Provider>
+    <>
+      <Row mode={mode} onActivate={onActivate} />
+      <Row mode={mode} onActivate={onActivate} />
+      <Row mode={mode} onActivate={onActivate} />
+    </>
   );
 };
 
