@@ -1,35 +1,53 @@
-import { useMemo, useState } from "react";
-import Button from "./components/Button";
-import { Document } from "./model/Document";
-import { DocumentState } from "./model/DocumentState";
+import { useState } from "react";
+import AddPersonButton from "./components/AddPersonButton";
+import ChangeStaceyButton from "./components/ChangeStaceyButton";
+import PersonList from "./components/PersonList";
+import { AppContext } from "./model/AppContext";
+import { IPerson } from "./model/IPerson";
+import PersonDetails from "./components/PersonDetails";
 
 const App: React.FC = () => {
-  const document = useMemo(() => new Document(), []);
-  const [state, setState] = useState(document.state.value);
+  console.log(`Render Application`);
+  const [persons, setPersons] = useState([
+    { firstname: "Stacey", lastname: "Starfish" },
+    { firstname: "Bertha", lastname: "Bear" },
+  ]);
 
-  const onStateChange = (newValue: DocumentState) => {
-    document.state.value = newValue;
-    setState(newValue);
+  const onAddPerson = (person: IPerson) => {
+    setPersons((previous) => [...previous, person]);
   };
 
+  const onUpdatePerson = (person: IPerson) => {
+    setPersons((previousPersons) =>
+      previousPersons.map((cachedPerson) => {
+        if (cachedPerson.firstname === person.firstname) {
+          cachedPerson.lastname = person.lastname;
+          setSelectedPerson(cachedPerson);
+        }
+        return cachedPerson;
+      })
+    );
+  };
+
+  const [selectedPerson, setSelectedPerson] = useState<IPerson>({
+    firstname: "Stacey",
+    lastname: "Starfish",
+  });
+
   return (
-    <>
-      <Button
-        documentState={DocumentState.Open}
-        state={state}
-        onStateChange={onStateChange}
-      />
-      <Button
-        documentState={DocumentState.InProgress}
-        state={state}
-        onStateChange={onStateChange}
-      />
-      <Button
-        documentState={DocumentState.Closed}
-        state={state}
-        onStateChange={onStateChange}
-      />
-    </>
+    <AppContext.Provider
+      value={{
+        persons: persons,
+        selectedPerson: selectedPerson,
+        onAddPerson: (person) => onAddPerson(person),
+        onUpdatePerson: (person) => onUpdatePerson(person),
+      }}
+    >
+      <AddPersonButton />
+      <ChangeStaceyButton />
+      <PersonDetails />
+      <PersonList />
+    </AppContext.Provider>
   );
 };
 
