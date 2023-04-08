@@ -6,11 +6,12 @@ const UserInput: React.FC<{ onConfirm: (text: string) => void }> = (props) => {
     event.preventDefault();
     const value = enteredText.current?.value;
     if (!value) {
-      throw new Error("Entered value must not be null");
+      props.onConfirm("");
+    } else {
+      props.onConfirm(value);
     }
-    props.onConfirm(value);
   };
-  
+
   return (
     <>
       <form action="" onSubmit={onSubmit}>
