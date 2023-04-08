@@ -1,22 +1,32 @@
-import { useRef } from "react";
+import { useEffect, useState } from "react";
 
-const UserInput: React.FC<{ onConfirm: (text: string) => void }> = (props) => {
-  const enteredText = useRef<HTMLInputElement>(null);
+const UserInput: React.FC<{
+  onConfirm: (text: string) => void;
+  typeWriterActive: boolean;
+}> = (props) => {
+  const [enteredText, setEnteredText] = useState("");
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const value = enteredText.current?.value;
-    if (!value) {
-      props.onConfirm("");
-    } else {
-      props.onConfirm(value);
-    }
+    props.onConfirm(enteredText);
   };
+
+  useEffect(() => {
+    if (props.typeWriterActive) {
+      setEnteredText("");
+    }
+  }, [props.typeWriterActive]);
 
   return (
     <>
       <form action="" onSubmit={onSubmit}>
         <label htmlFor="userInput">Enter the chain</label>
-        <input id="userInput" name="userInput" type="text" ref={enteredText} />
+        <input
+          id="userInput"
+          name="userInput"
+          type="text"
+          value={enteredText}
+          onChange={(event) => setEnteredText(event.target.value)}
+        />
         <button>Confirm</button>
       </form>
     </>

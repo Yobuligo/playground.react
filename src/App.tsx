@@ -14,24 +14,28 @@ const App: React.FC = () => {
     type: MessageType.Info,
   });
 
+  const [typeWriterActive, setTypeWriterActive] = useState(true);
+
   const onConfirm = (enteredText: string) => {
     if (enteredText.toUpperCase() !== text.toUpperCase()) {
       setMessage({ text: "You lose", type: MessageType.Error });
       return;
     }
-    
+
     setMessage({ text: "", type: MessageType.Info });
+    setTypeWriterActive(true);
     setText((previous) => `${previous}${letterPicker.next()}`);
   };
 
   const onPrint = () => {
+    setTypeWriterActive(false);
     setMessage({ text: "Enter the text", type: MessageType.Info });
   };
 
   return (
     <>
       <TypeWriter text={text} onPrint={onPrint} />
-      <UserInput onConfirm={onConfirm} />
+      <UserInput onConfirm={onConfirm} typeWriterActive={typeWriterActive} />
       {message ? <Message message={message} /> : ""}
     </>
   );
