@@ -17,8 +17,9 @@ const UserInput: React.FC<{
       setEnteredText("");
       setDisabled(true);
     } else {
-      input.current?.focus();
       setDisabled(false);
+      input.current?.focus();
+      input.current?.select()
     }
   }, [props.typeWriterActive]);
 
