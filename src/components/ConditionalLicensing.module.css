@@ -1,0 +1,13 @@
+.conditionalLicensing label {
+  margin-right: 0.5rem;
+}
+
+.conditionalLicensing button{
+  width: 6rem;
+}
+
+.conditionalLicensing button:active{
+  width: 6rem;
+  background-color: blueviolet;
+  color: white;
+}

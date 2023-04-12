@@ -1,53 +1,38 @@
-import { useState } from "react";
-import AddPersonButton from "./components/AddPersonButton";
-import ChangeStaceyButton from "./components/ChangeStaceyButton";
-import PersonList from "./components/PersonList";
-import { AppContext } from "./model/AppContext";
-import { IPerson } from "./model/IPerson";
-import PersonDetails from "./components/PersonDetails";
+import { useEffect, useState } from "react";
+import ConditionalLicensing from "./components/ConditionalLicensing";
+import { IProductsDTO } from "./model/IProductsDTO";
 
 const App: React.FC = () => {
-  console.log(`Render Application`);
-  const [persons, setPersons] = useState([
-    { firstname: "Stacey", lastname: "Starfish" },
-    { firstname: "Bertha", lastname: "Bear" },
-  ]);
+  const [products, setProducts] = useState<IProductsDTO[]>([]);
 
-  const onAddPerson = (person: IPerson) => {
-    setPersons((previous) => [...previous, person]);
-  };
-
-  const onUpdatePerson = (person: IPerson) => {
-    setPersons((previousPersons) =>
-      previousPersons.map((cachedPerson) => {
-        if (cachedPerson.firstname === person.firstname) {
-          cachedPerson.lastname = person.lastname;
-          setSelectedPerson(cachedPerson);
-        }
-        return cachedPerson;
-      })
-    );
-  };
-
-  const [selectedPerson, setSelectedPerson] = useState<IPerson>({
-    firstname: "Stacey",
-    lastname: "Starfish",
-  });
+  useEffect(() => {
+    setProducts(() => {
+      return [
+        {
+          name: "CB Transformation",
+          modules: [
+            { name: "Transformation Cockpit", enabled: true },
+            { name: "S4/Hana", enabled: true },
+          ],
+        },
+        {
+          name: "CB Interface Discovery",
+          modules: [
+            { name: "PI", enabled: true },
+            { name: "File Interface", enabled: false },
+            { name: "Customer API", enabled: true },
+            { name: "Soldoc Integrator", enabled: false },
+            { name: "Crystal Bridge Visual", enabled: true },
+          ],
+        },
+      ];
+    });
+  }, []);
 
   return (
-    <AppContext.Provider
-      value={{
-        persons: persons,
-        selectedPerson: selectedPerson,
-        onAddPerson: (person) => onAddPerson(person),
-        onUpdatePerson: (person) => onUpdatePerson(person),
-      }}
-    >
-      <AddPersonButton />
-      <ChangeStaceyButton />
-      <PersonDetails />
-      <PersonList />
-    </AppContext.Provider>
+    <>
+      <ConditionalLicensing products={products} />
+    </>
   );
 };
 
