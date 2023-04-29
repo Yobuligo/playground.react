@@ -4,7 +4,7 @@ import { Stopwatch } from "../services/Stopwatch";
 import { Gender } from "./Gender";
 
 export const AppContextData = {
-  firstname: MutableValue<string>("Peter"),
+  firstname: MutableValue<string>(""),
   lastname: MutableValue<string>("Hoffmann"),
   age: MutableValue<number>(),
   stopwatch: new Stopwatch(),
