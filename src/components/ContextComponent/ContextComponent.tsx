@@ -4,6 +4,7 @@ import { useMapContextData } from "./useMapContextData";
 /**
  * Requirements:
  * - Value Binding -> useState
+ * - Simple Value -> e.g. a stopwatch, which must be available everywhere, like a singleton
  * - Event Binding -> Calling a callback, when a value was changed? Actually also possible with Value Binding and useEffect
  * - Generic Reducer (Which supports all types) with Binding, so that it can have useStates
  */
