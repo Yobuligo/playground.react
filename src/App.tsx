@@ -1,14 +1,18 @@
-import ContextComponent from "./components/ContextComponent/ContextComponent";
-import { AppContext, AppContextData } from "./context/AppContext";
-import Person from "./feature/person/Person";
-import PersonForm from "./feature/person/PersonForm";
+import { Changer } from "./components/Changer";
+import Test from "./components/Test";
+import { ContextFactory } from "./services/ContextFactory";
+
+export const { Provider, useStore } = ContextFactory({
+  firstname: "Stacey",
+  lastname: "Starfish",
+});
 
 const App: React.FC = () => {
   return (
-    <ContextComponent context={AppContext} contextData={AppContextData}>
-      <Person />
-      <PersonForm />
-    </ContextComponent>
+    <Provider>
+      <Test />
+      <Changer />
+    </Provider>
   );
 };
 
