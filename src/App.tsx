@@ -3,7 +3,7 @@ import { Grid } from "./components/Grid/Grid";
 const App: React.FC = () => {
   return (
     <>
-      <Grid size={{ x: 50, y: 50 }} />
+      <Grid size={{ x: 20, y: 20 }} />
     </>
   );
 };
