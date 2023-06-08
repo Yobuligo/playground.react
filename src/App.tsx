@@ -1,9 +1,9 @@
-import { Grid } from "./components/Grid/Grid";
+import { Image } from "./components/Grid/Image";
 
 const App: React.FC = () => {
   return (
     <>
-      <Grid size={{ x: 20, y: 20 }} />
+      <Image size={{ x: 20, y: 20 }} />
     </>
   );
 };
