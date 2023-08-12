@@ -1,7 +1,9 @@
 import { ReactNode, useState } from "react";
-import { InnerComponent } from "./components/InnerComponent";
+
 import { ModalDialog } from "./components/modalDialog/ModalDialog";
 import { AppContext } from "./context/AppContext";
+import { InnerComponent } from "./features/InnerComponent";
+import { NewComponent } from "./features/NewComponent";
 
 const App: React.FC = () => {
   const [showModalDialog, setShowModalDialog] = useState(false);
@@ -24,6 +26,7 @@ const App: React.FC = () => {
       )}
       <p>Here is my app</p>
       <InnerComponent />
+      <NewComponent />
     </AppContext.Provider>
   );
 };
