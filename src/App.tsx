@@ -1,32 +1,33 @@
-import { ReactNode, useState } from "react";
-
+import { useState } from "react";
+import { IModalDialogConfig } from "./components/modalDialog/IModalDialogConfig";
 import { ModalDialog } from "./components/modalDialog/ModalDialog";
 import { AppContext } from "./context/AppContext";
-import { InnerComponent } from "./features/InnerComponent";
-import { NewComponent } from "./features/NewComponent";
+import { StartScreen } from "./features/startScreen/StartScreen";
 
 const App: React.FC = () => {
-  const [showModalDialog, setShowModalDialog] = useState(false);
-  const [modalDialogComponent, setModalDialogComponent] =
-    useState<ReactNode>(null);
+  const [modalDialogConfig, setModalDialogConfig] =
+    useState<IModalDialogConfig>({ component: null, show: false, title: "" });
 
   return (
     <AppContext.Provider
       value={{
-        showModalDialog,
-        setShowModalDialog,
-        modalDialogComponent,
-        setModalDialogComponent,
+        modalDialogConfig,
+        setModalDialogConfig,
       }}
     >
-      {showModalDialog && (
-        <ModalDialog onClose={() => setShowModalDialog(false)}>
-          {modalDialogComponent}
-        </ModalDialog>
+      {modalDialogConfig.show && (
+        <ModalDialog
+          config={modalDialogConfig}
+          onClose={() =>
+            setModalDialogConfig((previous) => {
+              previous.show = false;
+              return previous;
+            })
+          }
+        />
       )}
       <p>Here is my app</p>
-      <InnerComponent />
-      <NewComponent />
+      <StartScreen />
     </AppContext.Provider>
   );
 };

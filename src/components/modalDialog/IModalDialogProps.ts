@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { IModalDialogConfig } from "./IModalDialogConfig";
 
 export interface IModalDialogProps {
-  children: ReactNode;
+  config: IModalDialogConfig;
   onClose?: () => void;
 }

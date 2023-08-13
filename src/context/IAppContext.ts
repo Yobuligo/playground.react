@@ -1,8 +1,6 @@
-import { ReactNode } from "react";
+import { IModalDialogConfig } from "../components/modalDialog/IModalDialogConfig";
 
 export interface IAppContext {
-  showModalDialog: boolean;
-  setShowModalDialog: (showModalDialog: boolean) => void;
-  modalDialogComponent: ReactNode;
-  setModalDialogComponent: (modalDialogComponent: ReactNode) => void;
+  modalDialogConfig: IModalDialogConfig;
+  setModalDialogConfig: (modalDialogConfig: IModalDialogConfig) => void;
 }

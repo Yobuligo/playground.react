@@ -18,8 +18,17 @@
   left: 50%;
   transform: translate(-50%);
   background-color: white;
-  box-shadow:  8px 8px 8px rgba(128, 128, 128, 0.452);
+  box-shadow: 8px 8px 8px rgba(128, 128, 128, 0.452);
   border-radius: 12px;
+}
+
+.modalDialogHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-bottom: 1px solid #000;
+  height: 2rem;
+  margin-bottom: 1rem;
 }
 
 .modalDialogFooter {

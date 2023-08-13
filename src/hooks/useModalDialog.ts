@@ -4,14 +4,20 @@ import { AppContext } from "../context/AppContext";
 export const useModalDialog = () => {
   const context = useContext(AppContext);
 
-  const show = (component: ReactNode) => {
-    context.setModalDialogComponent(component);
-    context.setShowModalDialog(true);
+  const show = (component: ReactNode, title?: string) => {
+    context.setModalDialogConfig({
+      component,
+      show: true,
+      title,
+    });
   };
 
   const close = () => {
-    context.setModalDialogComponent(null);
-    context.setShowModalDialog(false);
+    context.setModalDialogConfig({
+      component: null,
+      show: false,
+      title: undefined,
+    });
   };
 
   return { show, close };
