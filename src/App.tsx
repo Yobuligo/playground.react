@@ -1,7 +1,9 @@
 import { useState } from "react";
+import styles from "./App.module.css";
 import { IModalDialogConfig } from "./components/modalDialog/IModalDialogConfig";
 import { ModalDialog } from "./components/modalDialog/ModalDialog";
 import { AppContext } from "./context/AppContext";
+import { Element } from "./features/Element";
 import { StartScreen } from "./features/startScreen/StartScreen";
 
 const App: React.FC = () => {
@@ -28,6 +30,335 @@ const App: React.FC = () => {
       )}
       <p>Here is my app</p>
       <StartScreen />
+      <div className={styles.elementRow}>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+      </div>
+
+      <div className={styles.elementRow}>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+      </div>
+
+      <div className={styles.elementRow}>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+      </div>
+
+      <div className={styles.elementRow}>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+      </div>
+
+      <div className={styles.elementRow}>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+      </div>
+
+      <div className={styles.elementRow}>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+      </div>
+
+      <div className={styles.elementRow}>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+      </div>
+
+      <div className={styles.elementRow}>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+      </div>
+
+      <div className={styles.elementRow}>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+      </div>
+
+      <div className={styles.elementRow}>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+        <div className={styles.element}>
+          <Element />
+        </div>
+      </div>
     </AppContext.Provider>
   );
 };
