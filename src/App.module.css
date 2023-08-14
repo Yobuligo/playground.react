@@ -1,2 +1,11 @@
 .app {
 }
+
+.element {
+  margin: 0.1rem;
+}
+
+.elementRow{
+    display: flex;
+    flex-direction: row;    
+}
