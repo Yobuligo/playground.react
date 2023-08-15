@@ -18,7 +18,7 @@ export const LabeledInput: React.FC<ILabeledInputProps> = (props) => {
       <div>
         <input
           id={inputId}
-          type="text"
+          type={props.type ?? "text"}
           value={value}
           onChange={onValueChange}
         />

@@ -8,7 +8,12 @@ import { StartScreen } from "./features/startScreen/StartScreen";
 
 const App: React.FC = () => {
   const [modalDialogConfig, setModalDialogConfig] =
-    useState<IModalDialogConfig>({ component: null, show: false, title: "" });
+    useState<IModalDialogConfig>({
+      component: null,
+      show: false,
+      title: "",
+      hideCloseButton: false,
+    });
 
   return (
     <AppContext.Provider
@@ -23,7 +28,7 @@ const App: React.FC = () => {
           onClose={() =>
             setModalDialogConfig((previous) => {
               previous.show = false;
-              return previous;
+              return { ...previous };
             })
           }
         />

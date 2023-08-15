@@ -15,9 +15,11 @@ export const ModalDialog: React.FC<IModalDialogProps> = (props) => {
                 {props.config.title}
               </div>
               <div>{props.config.component}</div>
-              <div className={styles.modalDialogFooter}>
-                <button onClick={props.onClose}>Close</button>
-              </div>
+              {!props.config.hideCloseButton && (
+                <div className={styles.modalDialogFooter}>
+                  <button onClick={props.onClose}>Close</button>
+                </div>
+              )}
             </Card>
           </div>
         </div>,
